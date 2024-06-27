@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jwero_sales_app/constants/strings.dart';
-import 'package:jwero_sales_app/views/login_page.dart';
+import 'package:jwero_sales_app/views/pages/login_page.dart';
 
 void main() {
   runApp(const MainApp());
