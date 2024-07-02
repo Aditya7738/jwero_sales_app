@@ -7,10 +7,10 @@ import 'package:jwero_sales_app/views/pages/login_page.dart';
 import 'package:get/get.dart';
 
 void main() {
-  WidgetsFlutterBinding.ensureInitialized();
+  // WidgetsFlutterBinding.ensureInitialized();
 
-  SystemChrome.setPreferredOrientations(
-      [DeviceOrientation.landscapeLeft, DeviceOrientation.landscapeRight]);
+  //SystemChrome.setPreferredOrientations(
+  //     [DeviceOrientation.landscapeLeft, DeviceOrientation.landscapeRight]);
 
   runApp(const MainApp());
 }
@@ -37,8 +37,8 @@ class MainApp extends StatelessWidget {
           ),
         ],
         theme: ThemeData(
-          primaryColor: Color.fromARGB(255, 221, 221, 221),
-        ),
+            primaryColor: Color.fromARGB(255, 221, 221, 221),
+            fontFamily: 'Inter'),
         debugShowCheckedModeBanner: false,
         title: Strings.appName,
         home: LoginPage(),

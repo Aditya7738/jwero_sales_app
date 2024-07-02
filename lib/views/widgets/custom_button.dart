@@ -32,7 +32,7 @@ class _CustomButtonState extends State<CustomButton> {
         width: widget.buttonWidth,
         decoration: BoxDecoration(
             color: widget.buttonBackgroundColor,
-            borderRadius: BorderRadius.circular(15.0)),
+            borderRadius: BorderRadius.circular(7.0)),
         padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
         child: Center(
           child: widget.isLoading

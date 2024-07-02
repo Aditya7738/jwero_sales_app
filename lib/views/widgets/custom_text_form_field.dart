@@ -6,6 +6,7 @@ class CustomTextFormField extends StatefulWidget {
   final double errorFontSize;
   // final double labelFontSize;
   // final String labelText;
+  final String? Function(String?)? validator;
   final TextEditingController textEditingController;
 
   const CustomTextFormField(
@@ -14,7 +15,8 @@ class CustomTextFormField extends StatefulWidget {
       required this.inputFontSize,
       required this.errorFontSize,
       // required this.labelFontSize,
-      required this.textEditingController});
+      required this.textEditingController,
+      this.validator});
 
   @override
   State<CustomTextFormField> createState() => _CustomTextFormFieldState();
@@ -27,9 +29,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
       style: TextStyle(fontSize: widget.inputFontSize),
       controller: widget.textEditingController,
       keyboardType: TextInputType.emailAddress,
-      validator: (value) {
-        //  return ValidationHelper.isEmailValid(value);
-      },
+      validator: widget.validator,
       decoration: InputDecoration(
         errorStyle:
             TextStyle(fontSize: widget.errorFontSize, color: Colors.red),
@@ -40,7 +40,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
             borderSide: BorderSide(
               color: const Color.fromARGB(255, 221, 221, 221),
             ),
-            borderRadius: BorderRadius.all(Radius.circular(20.0))),
+            borderRadius: BorderRadius.all(Radius.circular(10.0))),
       ),
     );
   }

@@ -23,7 +23,7 @@ class Fontsizes {
       color: Colors.white, fontWeight: FontWeight.bold, fontSize: 17.sp);
 
   static TextStyle headlineTextStyle =
-      TextStyle(fontWeight: FontWeight.bold, fontSize: 19.sp);
+      TextStyle(fontSize: 30.sp, fontWeight: FontWeight.bold);
 
   // static TextStyle? getHeadlineTextStyle(double deviceWidth) {
   //   return TextStyle(fontWeight: FontWeight.bold,
