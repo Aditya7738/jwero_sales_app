@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CustomButton extends StatefulWidget {
+  final String text;
   final bool rightIcon;
   final bool leftIcon;
   final bool isLoading;
@@ -8,6 +9,9 @@ class CustomButton extends StatefulWidget {
   final double buttonWidth;
   final double fontSize;
   final IconData? icon;
+  final Color circularIndicatorColor;
+  final Color textColor;
+  final EdgeInsetsGeometry padding;
 
   const CustomButton(
       {super.key,
@@ -17,7 +21,11 @@ class CustomButton extends StatefulWidget {
       required this.buttonWidth,
       required this.fontSize,
       this.icon,
-      required this.buttonBackgroundColor});
+      required this.buttonBackgroundColor,
+      required this.text,
+      required this.circularIndicatorColor,
+      required this.textColor,
+      required this.padding});
 
   @override
   State<CustomButton> createState() => _CustomButtonState();
@@ -33,7 +41,7 @@ class _CustomButtonState extends State<CustomButton> {
         decoration: BoxDecoration(
             color: widget.buttonBackgroundColor,
             borderRadius: BorderRadius.circular(7.0)),
-        padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+        padding: widget.padding,
         child: Center(
           child: widget.isLoading
               ? Container(
@@ -44,7 +52,7 @@ class _CustomButtonState extends State<CustomButton> {
                   child: CircularProgressIndicator(
                     color: Colors.white,
                     strokeWidth: 2.0,
-                    backgroundColor: Color(0xffCC868A),
+                    backgroundColor: widget.circularIndicatorColor,
                   ),
                 )
               : Row(
@@ -57,9 +65,9 @@ class _CustomButtonState extends State<CustomButton> {
                           )
                         : SizedBox(),
                     Text(
-                      "LOGIN",
+                      widget.text,
                       style: TextStyle(
-                          color: Colors.white,
+                          color: widget.textColor,
                           fontWeight: FontWeight.bold,
                           fontSize: widget.fontSize),
                     ),

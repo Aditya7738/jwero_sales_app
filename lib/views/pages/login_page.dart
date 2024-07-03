@@ -136,6 +136,11 @@ class _LoginPageState extends State<LoginPage> {
                             fontSize: Fontsizes.buttonTextSize,
                             buttonBackgroundColor:
                                 Color.fromARGB(255, 251, 207, 14),
+                            text: "LOGIN",
+                            circularIndicatorColor: Colors.white,
+                            textColor: Colors.white,
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 10.0, horizontal: 20.0),
                           ),
                         )
                       ],
@@ -341,6 +346,11 @@ class _LoginPageState extends State<LoginPage> {
                         fontSize: Fontsizes.buttonTextSize,
                         buttonBackgroundColor:
                             Color.fromARGB(255, 251, 207, 14),
+                        text: "LOGIN",
+                        circularIndicatorColor: Colors.white,
+                        textColor: Colors.white,
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 10.0, horizontal: 20.0),
                       ),
                     )
                   ],

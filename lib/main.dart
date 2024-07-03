@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jwero_sales_app/constants/strings.dart';
+import 'package:jwero_sales_app/views/pages/capture_lead_form.dart';
 import 'package:jwero_sales_app/views/pages/home_screen.dart';
 import 'package:jwero_sales_app/views/pages/login_page.dart';
 import 'package:get/get.dart';
@@ -35,6 +36,10 @@ class MainApp extends StatelessWidget {
             name: '/homeScreen',
             page: () => HomeScreen(),
           ),
+          GetPage(
+            name: '/captureLeadForm',
+            page: () => CaptureLeadForm(),
+          )
         ],
         theme: ThemeData(
             primaryColor: Color.fromARGB(255, 221, 221, 221),
