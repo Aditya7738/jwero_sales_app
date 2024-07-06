@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:jwero_sales_app/constants/fontsizes.dart';
 import 'package:jwero_sales_app/constants/strings.dart';
+import 'package:jwero_sales_app/controller/login_form_controller.dart';
 import 'package:jwero_sales_app/helpers/validation_helper.dart';
 import 'package:jwero_sales_app/views/pages/home_screen.dart';
 import 'package:jwero_sales_app/views/widgets/custom_button.dart';
@@ -28,6 +29,10 @@ class _LoginPageState extends State<LoginPage> {
   ];
 
   int currentIndex = 0;
+
+  final customTextFormFieldController = Get.put(LoginFormController());
+
+  // bool isObscureText = true;
 
   Widget forTabletScreen(BuildContext context) {
     return Container(
@@ -91,6 +96,7 @@ class _LoginPageState extends State<LoginPage> {
                             inputFontSize: Fontsizes.textFormInputFieldSize,
                             errorFontSize: Fontsizes.errorTextSize,
                             textEditingController: _emailController,
+                            keyboardType: TextInputType.emailAddress,
                             validator: ValidationHelper.isEmailValid,
                           ),
                         ),
@@ -101,16 +107,65 @@ class _LoginPageState extends State<LoginPage> {
                         SizedBox(
                           height: 10.0,
                         ),
-                        Container(
-                          width:
-                              Get.width > 600 ? Get.width / 2 : Get.width - 40,
-                          child: CustomTextFormField(
-                            inputFontSize: Fontsizes.textFormInputFieldSize,
-                            errorFontSize: Fontsizes.errorTextSize,
-                            textEditingController: _passwordController,
-                            //validator: ValidationHelper.ispass,
+                        // Container(
+                        //   width:
+                        //       Get.width > 600 ? Get.width / 2 : Get.width - 40,
+                        //   child: CustomTextFormField(
+                        //     inputFontSize: Fontsizes.textFormInputFieldSize,
+                        //     errorFontSize: Fontsizes.errorTextSize,
+                        //     textEditingController: _passwordController,
+                        //     keyboardType: TextInputType.visiblePassword,
+                        //     obscureText: true,
+                        //   ),
+                        // ),
+
+                        Obx(
+                          () => TextFormField(
+                            // obscureText: widget.obscureText != null ? widget.obscureText! : false,
+                            obscureText: customTextFormFieldController
+                                .rxIsPasswordHidden.value,
+                            style: TextStyle(
+                                fontSize: Fontsizes.textFormInputFieldSize),
+                            //   controller: TextEditingController(),
+                            keyboardType: TextInputType.visiblePassword,
+                            // validator: widget.validator,
+                            decoration: InputDecoration(
+                              suffixIcon: IconButton(
+                                onPressed: () {
+                                  log("customTextFormFieldController.rxIsPasswordHidden.value ${customTextFormFieldController.rxIsPasswordHidden.value} ");
+                                  // customTextFormFieldController
+                                  //         .rxIsPasswordHidden.value =
+                                  //     !customTextFormFieldController
+                                  //         .rxIsPasswordHidden.value;
+                                  customTextFormFieldController.updateObscure(
+                                      !customTextFormFieldController
+                                          .rxIsPasswordHidden.value);
+                                },
+                                icon: Icon(
+                                  customTextFormFieldController
+                                          .rxIsPasswordHidden.value
+                                      ? Icons.visibility
+                                      : Icons.visibility_off,
+                                  size: 35.0,
+                                ),
+                              ),
+                              errorStyle: TextStyle(
+                                  fontSize: Fontsizes.errorTextSize,
+                                  color: Colors.red),
+                              // labelStyle: TextStyle(fontSize: widget.labelFontSize),
+                              // // errorText: ,
+                              // labelText: widget.labelText,
+                              border: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: const Color.fromARGB(
+                                        255, 221, 221, 221),
+                                  ),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10.0))),
+                            ),
                           ),
                         ),
+
                         SizedBox(
                           height: 10.0,
                         ),
@@ -304,6 +359,8 @@ class _LoginPageState extends State<LoginPage> {
                         inputFontSize: Fontsizes.textFormInputFieldSize,
                         errorFontSize: Fontsizes.errorTextSize,
                         textEditingController: _emailController,
+                        keyboardType: TextInputType.emailAddress,
+                        validator: ValidationHelper.isEmailValid,
                       ),
                     ),
                     SizedBox(
@@ -313,12 +370,49 @@ class _LoginPageState extends State<LoginPage> {
                     SizedBox(
                       height: 10.0,
                     ),
-                    Container(
-                      width: Get.width > 600 ? Get.width / 2 : Get.width,
-                      child: CustomTextFormField(
-                        inputFontSize: Fontsizes.textFormInputFieldSize,
-                        errorFontSize: Fontsizes.errorTextSize,
-                        textEditingController: _passwordController,
+                    Obx(
+                      () => TextFormField(
+                        // obscureText: widget.obscureText != null ? widget.obscureText! : false,
+                        obscureText: customTextFormFieldController
+                            .rxIsPasswordHidden.value,
+                        style: TextStyle(
+                            fontSize: Fontsizes.textFormInputFieldSize),
+                        //   controller: TextEditingController(),
+                        keyboardType: TextInputType.visiblePassword,
+                        // validator: widget.validator,
+                        decoration: InputDecoration(
+                          suffixIcon: IconButton(
+                            onPressed: () {
+                              log("customTextFormFieldController.rxIsPasswordHidden.value ${customTextFormFieldController.rxIsPasswordHidden.value} ");
+                              // customTextFormFieldController
+                              //         .rxIsPasswordHidden.value =
+                              //     !customTextFormFieldController
+                              //         .rxIsPasswordHidden.value;
+                              customTextFormFieldController.updateObscure(
+                                  !customTextFormFieldController
+                                      .rxIsPasswordHidden.value);
+                            },
+                            icon: Icon(
+                              customTextFormFieldController
+                                      .rxIsPasswordHidden.value
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                              size: 35.0,
+                            ),
+                          ),
+                          errorStyle: TextStyle(
+                              fontSize: Fontsizes.errorTextSize,
+                              color: Colors.red),
+                          // labelStyle: TextStyle(fontSize: widget.labelFontSize),
+                          // // errorText: ,
+                          // labelText: widget.labelText,
+                          border: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: const Color.fromARGB(255, 221, 221, 221),
+                              ),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10.0))),
+                        ),
                       ),
                     ),
                     SizedBox(

@@ -38,12 +38,12 @@ class MainApp extends StatelessWidget {
           ),
           GetPage(
             name: '/captureLeadForm',
-            page: () => CaptureLeadForm(),
+            page: () => CaptureLeadForm(
+              title: "Add new lead",
+            ),
           )
         ],
-        theme: ThemeData(
-            primaryColor: Color.fromARGB(255, 221, 221, 221),
-            fontFamily: 'Inter'),
+        theme: ThemeData(primaryColor: Color(0xFF091E42), fontFamily: 'Inter'),
         debugShowCheckedModeBanner: false,
         title: Strings.appName,
         home: LoginPage(),

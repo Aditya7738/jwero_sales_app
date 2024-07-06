@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:jwero_sales_app/constants/strings.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:jwero_sales_app/views/pages/capture_lead_form.dart';
+import 'package:jwero_sales_app/views/pages/session_history.dart';
 import 'package:jwero_sales_app/views/widgets/custom_card_option.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -162,7 +163,7 @@ class _HomeScreenState extends State<HomeScreen> {
               onTap: () {},
               child: Container(
                   decoration: BoxDecoration(
-                      color: const Color(0xFF091E42),
+                      color: Theme.of(context).primaryColor,
                       borderRadius: BorderRadius.circular(10.0)),
                   padding: const EdgeInsets.symmetric(
                       vertical: 10.0, horizontal: 20.0),
@@ -304,7 +305,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      Get.to(CaptureLeadForm());
+                      Get.to(CaptureLeadForm(
+                        title: "Add new lead",
+                      ));
                     },
                     child: const CustomCard(
                       outerColor: Color(0xFFFF2E74),
@@ -320,11 +323,16 @@ class _HomeScreenState extends State<HomeScreen> {
                       imagePath: "assets/images/all_contacts.png",
                       label: 'All contacts'),
 
-                  CustomCard(
-                    outerColor: Color(0xFF02A698),
-                    innerColor: Color(0xFF019185),
-                    imagePath: "assets/images/session_history.png",
-                    label: 'Sessions history',
+                  GestureDetector(
+                    onTap: () {
+                      Get.to(() => SessionsHisotryPage());
+                    },
+                    child: CustomCard(
+                      outerColor: Color(0xFF02A698),
+                      innerColor: Color(0xFF019185),
+                      imagePath: "assets/images/session_history.png",
+                      label: 'Sessions history',
+                    ),
                   ),
                   // Expanded(
                   //   child: Container(

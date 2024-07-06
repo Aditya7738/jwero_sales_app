@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Fontsizes {
   static double textFormInputFieldSize = 16.sp;
-  static double tabletTextFormInputFieldSize = 25.sp;
+  //static double tabletTextFormInputFieldSize = 25.sp;
 
   static double errorTextSize = 14.sp;
   static double tabletErrorTextSize = 20.sp;
