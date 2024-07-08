@@ -1,10 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:jwero_sales_app/controller/product_bottomsheet_controller.dart';
+import 'package:jwero_sales_app/model/contact_model.dart';
+import 'package:jwero_sales_app/model/product_model.dart';
 import 'package:jwero_sales_app/views/pages/capture_lead_form.dart';
 
 class SelectProductBottomSheet extends StatelessWidget {
-  const SelectProductBottomSheet({super.key});
+  SelectProductBottomSheet({super.key});
+
+  ProductBottomSheetController productBottomSheetController =
+      Get.put(ProductBottomSheetController());
+
+  List<ProductModel> productsMap = [
+    ProductModel("ring1", "asfsa"),
+    ProductModel("ring2", "rehdfn"),
+    ProductModel("ring3", "sdgshw"),
+  ];
+
+  List<ProductModel> selectedProducts = <ProductModel>[];
 
   @override
   Widget build(BuildContext context) {
@@ -129,82 +143,16 @@ class SelectProductBottomSheet extends StatelessWidget {
                 SizedBox(
                   height: 20.0,
                 ),
-                Container(
-                  // height: 500,
-                  color: Colors.red,
+                SizedBox(
+                  height: Get.height * 0.624,
+                  width: Get.width - 40,
                   child: ListView.builder(
-                    itemCount: 3,
+                    itemCount: productBottomSheetController.productsMap.length,
                     itemBuilder: (context, index) {
-                      return Container(
-                        color: Colors.blue,
-                        child: RadioListTile.adaptive(
-                          value: "contact",
-                          groupValue: "contact name",
-                          onChanged: (value) {},
-                          title: Text("Title"),
-                          subtitle: Text("subttile"),
-                          // secondary: Row(
-                          //   mainAxisAlignment: MainAxisAlignment.start,
-                          //   crossAxisAlignment: CrossAxisAlignment.start,
-                          //   children: [
-                          //     Container(
-                          //       width: 64,
-                          //       height: 48,
-                          //       alignment: Alignment.center,
-                          //       decoration: BoxDecoration(
-                          //           color: Color(0xFFE9EFFF),
-                          //           shape: BoxShape.circle
-                          //           // shape: RoundedRectangleBorder(
-                          //           //   borderRadius: BorderRadius.circular(9999),
-                          //           // ),
-                          //           ),
-                          //       child: Text(
-                          //         'RS',
-                          //         textAlign: TextAlign.center,
-                          //         style: TextStyle(
-                          //           color: Theme.of(context).primaryColor,
-                          //           fontSize: 12,
-                          //           fontFamily: 'Inter',
-                          //           fontWeight: FontWeight.w500,
-                          //           height: 0,
-                          //         ),
-                          //       ),
-                          //     ),
-                          //     SizedBox(
-                          //       width: 20.0,
-                          //     ),
-                          //     Column(
-                          //       mainAxisAlignment: MainAxisAlignment.start,
-                          //       crossAxisAlignment: CrossAxisAlignment.start,
-                          //       children: [
-                          //         Text(
-                          //           'Santosh Kumar',
-                          //           style: TextStyle(
-                          //             color: Color(0xFF091E42),
-                          //             fontSize: 16,
-                          //             fontFamily: 'Inter',
-                          //             fontWeight: FontWeight.w600,
-                          //             height: 0,
-                          //             letterSpacing: -0.32,
-                          //           ),
-                          //         ),
-                          //         Text(
-                          //           '+91 996 730 0766',
-                          //           style: TextStyle(
-                          //             color: Color(0x7F555770),
-                          //             fontSize: 14,
-                          //             fontFamily: 'Inter',
-                          //             fontWeight: FontWeight.w400,
-                          //             height: 0,
-                          //             letterSpacing: -0.28,
-                          //           ),
-                          //         )
-                          //       ],
-                          //     )
-                          //   ],
-                          // ),
-                        ),
-                      );
+                      ProductModel productModel = productsMap[index];
+
+                      return productItem(
+                          productModel.name, productModel.code, index, context);
                     },
                   ),
                 )
@@ -212,5 +160,105 @@ class SelectProductBottomSheet extends StatelessWidget {
             ),
           ),
         ));
+  }
+
+  Widget productItem(
+      String name, String code, int index, BuildContext context) {
+    return Obx(
+      () => CheckboxMenuButton(
+          style: ButtonStyle(
+              iconColor:
+                  MaterialStateProperty.all(Theme.of(context).primaryColor),
+              shape: MaterialStateProperty.all(
+                  // OutlinedBorder.lerp(a, b, t)
+                  RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0),
+              ))),
+          value: productBottomSheetController.selectedProducts
+              .contains(productBottomSheetController.productsMap[index]),
+          onChanged: (value) => productBottomSheetController
+              .toggle(productBottomSheetController.productsMap[index]),
+          // onChanged: (value) {
+          //   print("CHECKBOX $index VALUE $value");
+          //   if (value != null) {
+          //     productBottomSheetController.updateSelectedProduct(value);
+          //   } else {
+          //     productBottomSheetController.updateSelectedProduct(false);
+          //   }
+
+          //   //isSelected = !isSelected;
+
+          //   if (productBottomSheetController.selectedProduct.value == true) {
+          //     selectedProducts.add(ProductModel(name, code));
+          //   } else if (productBottomSheetController.selectedProduct.value ==
+          //       false) {
+          //     selectedProducts.removeWhere((element) => element.name == name);
+          //   }
+          // },
+          child: Padding(
+            padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                // Container(
+                //   width: 64,
+                //   height: 48,
+                //   alignment: Alignment.center,
+                //   decoration: BoxDecoration(
+                //       color: Color(0xFFE9EFFF), shape: BoxShape.circle),
+                //   child: Text(
+                //     'DK',
+                //     textAlign: TextAlign.center,
+                //     style: TextStyle(
+                //       color: Theme.of(context).primaryColor,
+                //       fontSize: 14,
+                //       fontFamily: 'Inter',
+                //       fontWeight: FontWeight.w500,
+                //       height: 0,
+                //     ),
+                //   ),
+                // ),
+
+                Image.asset(
+                  "assets/images/profile_image.png",
+                  width: 45.0,
+                  height: 45.0,
+                ),
+                SizedBox(
+                  width: 10.0,
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      name,
+                      style: TextStyle(
+                        color: Color(0xFF091E42),
+                        fontSize: 16,
+                        fontFamily: 'Inter',
+                        fontWeight: FontWeight.w600,
+                        height: 0,
+                        letterSpacing: -0.32,
+                      ),
+                    ),
+                    Text(
+                      code,
+                      style: TextStyle(
+                        color: Color(0x7F555770),
+                        fontSize: 14,
+                        fontFamily: 'Inter',
+                        fontWeight: FontWeight.w400,
+                        height: 0,
+                        letterSpacing: -0.28,
+                      ),
+                    )
+                  ],
+                )
+              ],
+            ),
+          )),
+    );
   }
 }

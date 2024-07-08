@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:jwero_sales_app/constants/strings.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:jwero_sales_app/views/pages/capture_lead_form.dart';
+import 'package:jwero_sales_app/views/pages/contact_page.dart';
 import 'package:jwero_sales_app/views/pages/session_history.dart';
 import 'package:jwero_sales_app/views/widgets/custom_card_option.dart';
 
@@ -305,9 +306,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      Get.to(CaptureLeadForm(
-                        title: "Add new lead",
-                      ));
+                      Get.to(() => CaptureLeadForm(
+                            title: "Add new lead",
+                          ));
                     },
                     child: const CustomCard(
                       outerColor: Color(0xFFFF2E74),
@@ -317,11 +318,16 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
 
-                  CustomCard(
-                      outerColor: Color(0xFF007BFC),
-                      innerColor: Color(0xFF0274EA),
-                      imagePath: "assets/images/all_contacts.png",
-                      label: 'All contacts'),
+                  GestureDetector(
+                    onTap: () {
+                      Get.to(() => ContactPage());
+                    },
+                    child: CustomCard(
+                        outerColor: Color(0xFF007BFC),
+                        innerColor: Color(0xFF0274EA),
+                        imagePath: "assets/images/all_contacts.png",
+                        label: 'All contacts'),
+                  ),
 
                   GestureDetector(
                     onTap: () {

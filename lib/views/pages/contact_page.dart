@@ -1,21 +1,20 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:jwero_sales_app/views/pages/edit_report.dart';
+import 'package:jwero_sales_app/views/pages/capture_lead_form.dart';
 import 'package:jwero_sales_app/views/pages/home_screen.dart';
-import 'package:jwero_sales_app/views/widgets/session_report_bottomsheet.dart';
+import 'package:modals/modals.dart';
 
-class SessionsHisotryPage extends StatefulWidget {
-  const SessionsHisotryPage({super.key});
+class ContactPage extends StatefulWidget {
+  const ContactPage({super.key});
 
   @override
-  State<SessionsHisotryPage> createState() => _SessionsHisotryPageState();
+  State<ContactPage> createState() => _ContactPageState();
 }
 
-class _SessionsHisotryPageState extends State<SessionsHisotryPage>
-    with TickerProviderStateMixin {
-  late TabController tabController;
-
+class _ContactPageState extends State<ContactPage> {
   List<TableRow> getListOfTableRow(BuildContext context) {
     List<TableRow> widgets = <TableRow>[];
 
@@ -24,22 +23,7 @@ class _SessionsHisotryPageState extends State<SessionsHisotryPage>
         children: [
           GestureDetector(
             onTap: () {
-              showModalBottomSheet(
-                constraints: BoxConstraints.expand(
-                    width: Get.width, height: Get.height - 20),
-                isDismissible: false,
-                enableDrag: true,
-                context: context,
-                showDragHandle: true,
-                isScrollControlled: true,
-                // shape: RoundedRectangleBorder(
-                //     borderRadius: BorderRadius.only(
-                //         topLeft: Radius.circular(20.0),
-                //         topRight: Radius.circular(20.0))),
-                builder: (context) {
-                  return SessionReport(tabController: tabController);
-                },
-              );
+              //
               // Get.bottomSheet(SessionReport(),
               //     isScrollControlled: true,
               //     ignoreSafeArea: true,
@@ -161,6 +145,34 @@ class _SessionsHisotryPageState extends State<SessionsHisotryPage>
               ),
             ),
           ),
+          Container(
+            alignment: Alignment.center,
+            child: Text(
+              '0',
+              style: TextStyle(
+                color: Theme.of(context).primaryColor,
+                fontSize: 14,
+                fontFamily: 'Inter',
+                fontWeight: FontWeight.w500,
+                height: 0,
+                letterSpacing: -0.28,
+              ),
+            ),
+          ),
+          Container(
+            alignment: Alignment.center,
+            child: Text(
+              '0',
+              style: TextStyle(
+                color: Theme.of(context).primaryColor,
+                fontSize: 14,
+                fontFamily: 'Inter',
+                fontWeight: FontWeight.w500,
+                height: 0,
+                letterSpacing: -0.28,
+              ),
+            ),
+          ),
           Text(
             '18/02/2024',
             style: TextStyle(
@@ -172,21 +184,10 @@ class _SessionsHisotryPageState extends State<SessionsHisotryPage>
               letterSpacing: -0.28,
             ),
           ),
-          Text(
-            'Showroom',
-            style: TextStyle(
-              color: Theme.of(context).primaryColor,
-              fontSize: 14,
-              fontFamily: 'Inter',
-              fontWeight: FontWeight.w500,
-              height: 0,
-              letterSpacing: -0.28,
-            ),
-          ),
           Container(
-            alignment: Alignment.center,
+            alignment: Alignment.centerLeft,
             child: Text(
-              '8',
+              '3 months ago',
               style: TextStyle(
                 color: Theme.of(context).primaryColor,
                 fontSize: 14,
@@ -197,137 +198,98 @@ class _SessionsHisotryPageState extends State<SessionsHisotryPage>
               ),
             ),
           ),
-          Container(
-            alignment: Alignment.center,
-            child: Text(
-              '12 m',
-              style: TextStyle(
-                color: Theme.of(context).primaryColor,
-                fontSize: 14,
-                fontFamily: 'Inter',
-                fontWeight: FontWeight.w500,
-                height: 0,
-                letterSpacing: -0.28,
+          GestureDetector(
+            onTap: () {
+              //print("MODAL CALLED");
+
+              //   showModal(
+              //     ModalEntry.positioned(context,
+              //       tag: "Actions $i",
+              //       // alignment: Alignment.center,
+              //       // modalAlignment: Alignment.centerRight,
+              //       right: 10.0,
+
+              //       child: Column(
+              //         mainAxisAlignment: MainAxisAlignment.start,
+              //         crossAxisAlignment: CrossAxisAlignment.start,
+              //         children: [
+              //           Padding(
+              //             padding: const EdgeInsets.symmetric(
+              //                 vertical: 8.0, horizontal: 10.0),
+              //             child: Row(
+              //               mainAxisAlignment: MainAxisAlignment.center,
+              //               crossAxisAlignment: CrossAxisAlignment.center,
+              //               children: [
+              //                 Icon(
+              //                   Icons.edit,
+              //                   color: Theme.of(context).primaryColor,
+              //                 ),
+              //                 SizedBox(
+              //                   width: 20.0,
+              //                 ),
+              //                 Text(
+              //                   "Edit contact",
+              //                   style: TextStyle(
+              //                     color: Theme.of(context).primaryColor,
+              //                   ),
+              //                 )
+              //               ],
+              //             ),
+              //           ),
+              //           Padding(
+              //             padding: const EdgeInsets.symmetric(
+              //                 vertical: 8.0, horizontal: 10.0),
+              //             child: Row(
+              //               mainAxisAlignment: MainAxisAlignment.center,
+              //               crossAxisAlignment: CrossAxisAlignment.center,
+              //               children: [
+              //                 Icon(
+              //                   Icons.delete_outline_rounded,
+              //                   color: Colors.red,
+              //                 ),
+              //                 SizedBox(
+              //                   width: 20.0,
+              //                 ),
+              //                 Text(
+              //                   "Delete contact",
+              //                   style: TextStyle(color: Colors.red),
+              //                 )
+              //               ],
+              //             ),
+              //           ),
+              //         ],
+              //       )));
+            },
+            child: Container(
+              margin: EdgeInsets.only(right: 20.0, left: 160),
+              alignment: Alignment.centerRight,
+              // color: Colors.amber,
+              padding: const EdgeInsets.only(left: 3, right: 3),
+              clipBehavior: Clip.antiAlias,
+              decoration: ShapeDecoration(
+                color: Colors.white,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8)),
+                shadows: [
+                  BoxShadow(
+                    color: Color(0x66000000),
+                    blurRadius: 1,
+                    offset: Offset(0, 0),
+                    spreadRadius: 0,
+                  )
+                ],
+              ),
+              child: Image.asset(
+                "assets/images/three_dots.png",
+                width: 24,
+                height: 18,
               ),
             ),
-          ),
-          getOrderStatus(i)
+          )
         ],
       ));
     }
     return widgets;
-  }
-
-  Widget getOrderStatus(int index) {
-    if (index == 0) {
-      return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 38.0),
-        child: Container(
-          alignment: Alignment.center,
-
-          padding: const EdgeInsets.symmetric(vertical: 4),
-          //  clipBehavior: Clip.antiAlias,
-          decoration: ShapeDecoration(
-            color: Color(0xFFF5FFF9),
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
-            shadows: [
-              BoxShadow(
-                color: Color(0x66000000),
-                blurRadius: 0.80,
-                offset: Offset(0, 0),
-                spreadRadius: 0,
-              )
-            ],
-          ),
-          child: Text(
-            'Order',
-            style: TextStyle(
-              color: Color(0xFF0EAD1E),
-              fontSize: 14,
-              fontFamily: 'Inter',
-              fontWeight: FontWeight.w500,
-              height: 0,
-              letterSpacing: -0.28,
-            ),
-          ),
-        ),
-      );
-    } else if (index == 1) {
-      return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 38.0),
-        child: Container(
-          alignment: Alignment.center,
-
-          padding: const EdgeInsets.symmetric(vertical: 4),
-          //  clipBehavior: Clip.antiAlias,
-          decoration: ShapeDecoration(
-            color: Color(0xFFE9EFFF),
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
-            shadows: [
-              BoxShadow(
-                color: Color(0x66000000),
-                blurRadius: 0.80,
-                offset: Offset(0, 0),
-                spreadRadius: 0,
-              )
-            ],
-          ),
-          child: Text(
-            'Add to cart',
-            style: TextStyle(
-              color: Color(0xFF616ADA),
-              fontSize: 14,
-              fontFamily: 'Inter',
-              fontWeight: FontWeight.w500,
-              height: 0,
-              letterSpacing: -0.28,
-            ),
-          ),
-        ),
-      );
-    } else {
-      return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 38.0),
-        child: Container(
-          alignment: Alignment.center,
-
-          padding: const EdgeInsets.symmetric(vertical: 4),
-          //  clipBehavior: Clip.antiAlias,
-          decoration: ShapeDecoration(
-            color: Color(0xFFF7F7FD),
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
-            shadows: [
-              BoxShadow(
-                color: Color(0x66000000),
-                blurRadius: 0.80,
-                offset: Offset(0, 0),
-                spreadRadius: 0,
-              )
-            ],
-          ),
-          child: Text(
-            'Viewed',
-            style: TextStyle(
-              color: Theme.of(context).primaryColor,
-              fontSize: 14,
-              fontFamily: 'Inter',
-              fontWeight: FontWeight.w500,
-              height: 0,
-              letterSpacing: -0.28,
-            ),
-          ),
-        ),
-      );
-    }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    tabController = TabController(length: 4, vsync: this);
   }
 
   @override
@@ -346,10 +308,56 @@ class _SessionsHisotryPageState extends State<SessionsHisotryPage>
         ),
         actions: [
           Padding(
+            padding: const EdgeInsets.only(right: 10.0),
+            child: TextButton(
+                onPressed: () {},
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      "assets/images/sync_icon.png",
+                      width: 20.0,
+                      height: 20.0,
+                    ),
+                    SizedBox(
+                      width: 10.0,
+                    ),
+                    Text(
+                      "Sync",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                )),
+          ),
+          Padding(
             padding: const EdgeInsets.only(right: 8.0),
             child: TextButton(
                 onPressed: () {
-                  Get.to(() => EditReportForm());
+                  // Get.to(() => EditReportForm());
+                  showModalBottomSheet(
+                    constraints: BoxConstraints.expand(
+                        width: Get.width, height: Get.height - 80),
+                    isDismissible: false,
+                    enableDrag: true,
+                    context: context,
+                    showDragHandle: true,
+                    isScrollControlled: true,
+                    // shape: RoundedRectangleBorder(
+                    //     borderRadius: BorderRadius.only(
+                    //         topLeft: Radius.circular(20.0),
+                    //         topRight: Radius.circular(20.0))),
+                    builder: (context) {
+                      return CaptureLeadForm(
+                        title: "Add new contact",
+                      );
+                    },
+                  );
+
+                  //);
                 },
                 style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(Colors.white)),
@@ -362,7 +370,7 @@ class _SessionsHisotryPageState extends State<SessionsHisotryPage>
                       color: Theme.of(context).primaryColor,
                     ),
                     Text(
-                      "Add session",
+                      "Add contact",
                       style: TextStyle(
                           color: Theme.of(context).primaryColor,
                           fontSize: 16.sp,
@@ -373,7 +381,7 @@ class _SessionsHisotryPageState extends State<SessionsHisotryPage>
           )
         ],
         title: Text(
-          "All sessions",
+          "Contacts",
           style: TextStyle(
               color: Colors.white,
               fontSize: 20.sp,
@@ -391,7 +399,7 @@ class _SessionsHisotryPageState extends State<SessionsHisotryPage>
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    'Showing 24 sessions',
+                    'Showing 340 contacts',
                     style: TextStyle(
                       color: Theme.of(context).primaryColor,
                       fontSize: 20,
@@ -508,39 +516,17 @@ class _SessionsHisotryPageState extends State<SessionsHisotryPage>
                   textDirection: TextDirection.ltr,
                   columnWidths: <int, TableColumnWidth>{
                     0: FixedColumnWidth(400),
-                    1: FixedColumnWidth(175),
+                    1: FixedColumnWidth(150),
                     2: FixedColumnWidth(150),
-                    3: FixedColumnWidth(200),
-                    4: FixedColumnWidth(150),
-                    5: FixedColumnWidth(165)
+                    3: FixedColumnWidth(165),
+                    4: FixedColumnWidth(175),
+                    5: FixedColumnWidth(200)
                   },
                   defaultVerticalAlignment: TableCellVerticalAlignment.middle,
                   children: [
                     TableRow(children: [
                       Text(
                         'Contact',
-                        style: TextStyle(
-                          color: Color(0x7F555770),
-                          fontSize: 14,
-                          fontFamily: 'Inter',
-                          fontWeight: FontWeight.w500,
-                          height: 0,
-                          letterSpacing: -0.28,
-                        ),
-                      ),
-                      Text(
-                        'Visit date',
-                        style: TextStyle(
-                          color: Color(0x7F555770),
-                          fontSize: 14,
-                          fontFamily: 'Inter',
-                          fontWeight: FontWeight.w500,
-                          height: 0,
-                          letterSpacing: -0.28,
-                        ),
-                      ),
-                      Text(
-                        'Location',
                         style: TextStyle(
                           color: Color(0x7F555770),
                           fontSize: 14,
@@ -558,7 +544,7 @@ class _SessionsHisotryPageState extends State<SessionsHisotryPage>
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text(
-                              'Product viewed',
+                              'Orders',
                               style: TextStyle(
                                 color: Color(0x7F555770),
                                 fontSize: 14,
@@ -581,9 +567,49 @@ class _SessionsHisotryPageState extends State<SessionsHisotryPage>
                       ),
                       Container(
                         alignment: Alignment.center,
+                        // color: Colors.blue,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Visits',
+                              style: TextStyle(
+                                color: Color(0x7F555770),
+                                fontSize: 14,
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w500,
+                                height: 0,
+                                letterSpacing: -0.28,
+                              ),
+                            ),
+                            SizedBox(
+                              width: 10.0,
+                            ),
+                            Image.asset(
+                              "assets/images/arrow_down.png",
+                              width: 20.0,
+                              height: 15.0,
+                            )
+                          ],
+                        ),
+                      ),
+                      Text(
+                        'Date added',
+                        style: TextStyle(
+                          color: Color(0x7F555770),
+                          fontSize: 14,
+                          fontFamily: 'Inter',
+                          fontWeight: FontWeight.w500,
+                          height: 0,
+                          letterSpacing: -0.28,
+                        ),
+                      ),
+                      Container(
+                        alignment: Alignment.centerLeft,
                         // color: Colors.green,
                         child: Text(
-                          'Time spent',
+                          'Last visit',
                           style: TextStyle(
                             color: Color(0x7F555770),
                             fontSize: 14,
@@ -596,9 +622,9 @@ class _SessionsHisotryPageState extends State<SessionsHisotryPage>
                       ),
                       Container(
                         // color: Colors.red,
-                        alignment: Alignment.center,
+                        alignment: Alignment.centerRight,
                         child: Text(
-                          'Status',
+                          'Last activity',
                           style: TextStyle(
                             color: Color(0x7F555770),
                             fontSize: 14,

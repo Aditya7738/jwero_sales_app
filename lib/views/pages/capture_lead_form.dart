@@ -43,7 +43,8 @@ class _CaptureLeadFormState extends State<CaptureLeadForm> {
         backgroundColor: Theme.of(context).primaryColor,
         leading: InkWell(
           onTap: () {
-            Get.to(() => HomeScreen());
+            //Get.to(() => HomeScreen());
+            Get.back();
           },
           child: const Icon(
             Icons.arrow_back_rounded,
@@ -55,7 +56,7 @@ class _CaptureLeadFormState extends State<CaptureLeadForm> {
             padding: const EdgeInsets.only(right: 8.0),
             child: TextButton(
                 onPressed: () {
-                  Get.to(HomeScreen());
+                  Get.to(() => HomeScreen());
                 },
                 style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(Colors.white)),

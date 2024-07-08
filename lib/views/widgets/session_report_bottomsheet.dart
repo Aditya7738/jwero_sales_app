@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:jwero_sales_app/views/pages/capture_lead_form.dart';
 import 'package:jwero_sales_app/views/pages/edit_report.dart';
 import 'package:jwero_sales_app/views/pages/session_history.dart';
 import 'package:jwero_sales_app/views/widgets/edit_report_row.dart';
+import 'package:jwero_sales_app/views/widgets/select_customer_bottomsheet.dart';
 import 'package:jwero_sales_app/views/widgets/select_product_bottomsheet.dart';
 
 class SessionReport extends StatefulWidget {
@@ -406,7 +408,7 @@ class _SessionReportState extends State<SessionReport>
           )
         ],
         title: Text(
-          "Edit report",
+          "Session report",
           style: TextStyle(
               color: Theme.of(context).primaryColor,
               fontSize: 20.sp,
@@ -509,85 +511,113 @@ class _SessionReportState extends State<SessionReport>
                                       crossAxisAlignment:
                                           CrossAxisAlignment.center,
                                       children: [
-                                        Container(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 16, vertical: 12),
-                                          decoration: ShapeDecoration(
-                                            color: Colors.white,
-                                            shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(8)),
-                                            shadows: [
-                                              BoxShadow(
-                                                color: Color(0x66000000),
-                                                blurRadius: 1,
-                                                offset: Offset(0, 0),
-                                                spreadRadius: 0,
-                                              )
-                                            ],
-                                          ),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.min,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            children: [
-                                              Icon(Icons.add),
-                                              Text(
-                                                'Select customer',
-                                                style: TextStyle(
-                                                  color: Theme.of(context)
-                                                      .primaryColor,
-                                                  fontSize: 16,
-                                                  fontFamily: 'Inter',
-                                                  fontWeight: FontWeight.w600,
-                                                  height: 0,
+                                        GestureDetector(
+                                          onTap: () {
+                                            Get.to(() => CaptureLeadForm(
+                                                title: "Add new contact"));
+                                          },
+                                          child: Container(
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 16, vertical: 12),
+                                            decoration: ShapeDecoration(
+                                              color: Colors.white,
+                                              shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(8)),
+                                              shadows: [
+                                                BoxShadow(
+                                                  color: Color(0x66000000),
+                                                  blurRadius: 1,
+                                                  offset: Offset(0, 0),
+                                                  spreadRadius: 0,
+                                                )
+                                              ],
+                                            ),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.min,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              children: [
+                                                Icon(Icons.add),
+                                                Text(
+                                                  'New customer',
+                                                  style: TextStyle(
+                                                    color: Theme.of(context)
+                                                        .primaryColor,
+                                                    fontSize: 16,
+                                                    fontFamily: 'Inter',
+                                                    fontWeight: FontWeight.w600,
+                                                    height: 0,
+                                                  ),
                                                 ),
-                                              ),
-                                            ],
+                                              ],
+                                            ),
                                           ),
                                         ),
                                         SizedBox(
                                           width: 20.0,
                                         ),
-                                        Container(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 16, vertical: 12),
-                                          decoration: ShapeDecoration(
-                                            color: Colors.white,
-                                            shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(8)),
-                                            shadows: [
-                                              BoxShadow(
-                                                color: Color(0x66000000),
-                                                blurRadius: 1,
-                                                offset: Offset(0, 0),
-                                                spreadRadius: 0,
-                                              )
-                                            ],
-                                          ),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.min,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            children: [
-                                              Icon(Icons.add),
-                                              Text(
-                                                'Select customer',
-                                                style: TextStyle(
-                                                  color: Theme.of(context)
-                                                      .primaryColor,
-                                                  fontSize: 16,
-                                                  fontFamily: 'Inter',
-                                                  fontWeight: FontWeight.w600,
-                                                  height: 0,
+                                        GestureDetector(
+                                          onTap: () {
+                                            showModalBottomSheet(
+                                              constraints:
+                                                  BoxConstraints.expand(
+                                                      width: Get.width,
+                                                      height: Get.height - 80),
+                                              isDismissible: false,
+                                              enableDrag: true,
+                                              context: context,
+                                              showDragHandle: true,
+                                              isScrollControlled: true,
+                                              // shape: RoundedRectangleBorder(
+                                              //     borderRadius: BorderRadius.only(
+                                              //         topLeft: Radius.circular(20.0),
+                                              //         topRight: Radius.circular(20.0))),
+                                              builder: (context) {
+                                                return SelectCustomerBottomSheet();
+                                              },
+                                            );
+                                          },
+                                          child: Container(
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 16, vertical: 12),
+                                            decoration: ShapeDecoration(
+                                              color: Colors.white,
+                                              shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(8)),
+                                              shadows: [
+                                                BoxShadow(
+                                                  color: Color(0x66000000),
+                                                  blurRadius: 1,
+                                                  offset: Offset(0, 0),
+                                                  spreadRadius: 0,
+                                                )
+                                              ],
+                                            ),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.min,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              children: [
+                                                Icon(Icons.add),
+                                                Text(
+                                                  'Select customer',
+                                                  style: TextStyle(
+                                                    color: Theme.of(context)
+                                                        .primaryColor,
+                                                    fontSize: 16,
+                                                    fontFamily: 'Inter',
+                                                    fontWeight: FontWeight.w600,
+                                                    height: 0,
+                                                  ),
                                                 ),
-                                              ),
-                                            ],
+                                              ],
+                                            ),
                                           ),
                                         )
                                       ],
